@@ -5,5 +5,26 @@
   <%= @category.name %>
 </p>
 
+<%= form_with(model: [ @category, @product ], local: true) do |form| %>
+<% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@product.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.label 'Nombre' %>
+  <%= form.text_field :name %>
+  <%= form.label 'Precio' %>
+  <%= form.number_field :price %>
+  <%= form.submit %>
+<% end %>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
