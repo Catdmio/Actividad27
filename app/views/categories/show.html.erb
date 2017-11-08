@@ -26,5 +26,25 @@
   <%= form.submit %>
 <% end %>
 
+<div class="table">Esto es una lista de productos y precios ( ͡° ͜ʖ ͡°)
+	<table>
+		<tr>
+			<th> Nombre </th>
+			<th> Precio </th>
+			<th> Eliminar </th>
+		</tr>
+		<% @category.products.each do |product| %>
+		<tr>
+			<td> <%= product.name %> </td>
+			<td> <%= product.price %> </td>
+			<td>
+				<div class= "btn btn-secondary">
+				<%= link_to 'x', category_product_path(@category, product), :class => "btn", method: :delete %>
+				</div></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

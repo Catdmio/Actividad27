@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
 
 	def create
 		@product = Product.new(product_params)
-		@product.new(product_params)
 		@product.category_id = params[:category_id]
 		@product.save
 		if @product.save
@@ -19,7 +18,7 @@ class ProductsController < ApplicationController
 	def destroy
 		@product = Product.find(params[:id])
 		@product.destroy
-		redirect_to product_path
+		redirect_to category_path(@product.category_id)
 	end
 
 	private
